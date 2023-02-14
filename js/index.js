@@ -11,13 +11,13 @@ canvas.width = WIDTH;
 canvas.height = HEIGHT;
 
 let dotCount = 32 + 16 + 8;
-let yVal = 6.3;
+let yValue = 6.3;
 
 const steps = [0.2, 0.4, 0.8];
 const coefficients = [[210, 13], [150, 9], [90, 5]];
 
 for (let s = 0; s < steps.length; s++) {
-  for (let i = 0; i < yVal; i += steps[s]) {
+  for (let i = 0; i < yValue; i += steps[s]) {
     let sinVal = Math.sin(i);
     let cosVal = Math.cos(i);
     let x = WIDTH / 2 + coefficients[s][0] * Math.pow(sinVal, 3);
