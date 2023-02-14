@@ -11,18 +11,17 @@ canvas.width = WIDTH;
 canvas.height = HEIGHT;
 
 let dotCount = 32 + 16 + 8;
-//let random = Math.random;
 let yVal = 6.3;
 
-const girlfriendName = "feionna";
-const nameDots = [];
 const steps = [0.2, 0.4, 0.8];
 const coefficients = [[210, 13], [150, 9], [90, 5]];
 
 for (let s = 0; s < steps.length; s++) {
   for (let i = 0; i < yVal; i += steps[s]) {
-    let x = WIDTH / 2 + coefficients[s][0] * Math.pow(Math.sin(i), 3);
-    let y = HEIGHT / 2 + coefficients[s][1] * -(15 * Math.cos(i) - 5 * Math.cos(2 * i) - 2 * Math.cos(3 * i) - Math.cos(4 * i));
+    let sinVal = Math.sin(i);
+    let cosVal = Math.cos(i);
+    let x = WIDTH / 2 + coefficients[s][0] * Math.pow(sinVal, 3);
+    let y = HEIGHT / 2 + coefficients[s][1] * -(15 * cosVal - 5 * Math.cos(2 * i) - 2 * Math.cos(3 * i) - Math.cos(4 * i));
     hearts.push([x, y]);
   }
 }
@@ -56,7 +55,7 @@ for (let i = 0; i < dotCount; i++) {
 const path = (d) => {
   ctx.fillStyle = d.f;
   ctx.beginPath();
-  ctx.arc(d.x, d.y, d.R, 0, yVal, 1);
+  ctx.arc(d.x, d.y, d.R, 0, Math.PI * 2, true);
   ctx.closePath();
   ctx.fill();
 };
@@ -94,14 +93,7 @@ function updateDots() {
     const distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
 
     if (distance < 10) {
-      if (Math.random() > 0.95) {
-        dot.q = Math.floor(Math.random() * dotCount);
-      } else {
-        if (Math.random() > 0.99) {
-          dot.D *= -1;
-        }
-        dot.q = (dot.q + dot.D + dotCount) % dotCount;
-      }
+      dot.q = Math.random() > 0.95 ? Math.floor(Math.random() * dotCount) : (dot.q + (Math.random() > 0.99 ? dot.D *= -1 : 1) + dotCount) % dotCount;
     }
 
     dot.X = dot.X - xDiff / distance * dot.S;
