@@ -1,7 +1,7 @@
 let WIDTH = window.innerWidth;
 let HEIGHT = window.innerHeight;
 
-let canvas = document.getElementById('alx');
+let canvas = document.getElementById('heartanimated');
 let ctx = canvas.getContext('2d');
 
 let dots = [];
