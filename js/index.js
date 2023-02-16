@@ -16,6 +16,10 @@ let hearts = [];
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
 
+/*
+The canvas width and height are set to the WIDTH and HEIGHT values. Lets say you are on mobile device the width and height are set to that value just so it isn't too larger on that device.
+*/
+
 let dotCount = 32 + 16 + 8;
 let yValue = 6.3;
 
