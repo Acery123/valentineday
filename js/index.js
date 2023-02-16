@@ -38,10 +38,10 @@ const coefficients = [[210, 13], [150, 9], [90, 5]];
 
 for (let s = 0; s < steps.length; s++) {
   for (let i = 0; i < yValue; i += steps[s]) {
-    let sinVal = Math.sin(i);
-    let cosVal = Math.cos(i);
-    let x = WIDTH / 2 + coefficients[s][0] * Math.pow(sinVal, 3);
-    let y = HEIGHT / 2 + coefficients[s][1] * -(15 * cosVal - 5 * Math.cos(2 * i) - 2 * Math.cos(3 * i) - Math.cos(4 * i));
+    const sinVal = Math.sin(i);
+    const cosVal = Math.cos(i);
+    const x = WIDTH / 2 + coefficients[s][0] * Math.pow(sinVal, 3);
+    const y = HEIGHT / 2 + coefficients[s][1] * -(15 * cosVal - 5 * Math.cos(2 * i) - 2 * Math.cos(3 * i) - Math.cos(4 * i));
     hearts.push([x, y]);
   }
 }
