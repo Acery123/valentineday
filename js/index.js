@@ -7,14 +7,30 @@ let ctx = canvas.getContext('2d');
 let dots = [];
 let hearts = [];
 
+/*
+- canvas is an HTML canvas element that is selected from the document.
+- and ctx is its 2D rendering context.
+- dots and hearts are arrays that will store information about the dots and heart shape.
+*/
+
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
 
 let dotCount = 32 + 16 + 8;
 let yValue = 6.3;
 
+/*
+- dotCount is the total number of dots that will be used to form the heart shape. 
+- yVal is a value used in the calculation of the heart shape.
+*/
+
 const steps = [0.2, 0.4, 0.8];
 const coefficients = [[210, 13], [150, 9], [90, 5]];
+
+/*
+- Steps is an array of step sizes for the loop
+- Coefficients is a nested array that contains coefficients used in the calculation of the heart shape.
+*/
 
 for (let s = 0; s < steps.length; s++) {
   for (let i = 0; i < yValue; i += steps[s]) {
@@ -25,6 +41,13 @@ for (let s = 0; s < steps.length; s++) {
     hearts.push([x, y]);
   }
 }
+/*
+A for loop is used to calculate the heart shape. 
+The outer loop iterates over the elements in the steps array
+The inner loop iterates over values of i with a step size equal to the current step value. 
+For each iteration, The sine and cosine values of i are calculated and used in the calculation of the heart shape coordinates. 
+The resulting coordinates are pushed into the hearts array.
+*/
 
 for (let i = 0; i < dotCount; i++) {
   x = Math.random() * WIDTH;
@@ -50,7 +73,11 @@ for (let i = 0; i < dotCount; i++) {
   }
   dots[i] = f;
 }
-
+/*
+A for loop is used to calculate the dots that will form the heart shape. 
+The loop iterates dotCount times and for each iteration
+a set of dot properties are calculated and pushed into the dots array.
+*/
 
 const path = (d) => {
   ctx.fillStyle = d.f;
@@ -59,6 +86,10 @@ const path = (d) => {
   ctx.closePath();
   ctx.fill();
 };
+
+/*
+The path is a function that draws the dots on the canvas using the fillStyle property of the context and the arc method.
+*/
 
 let wait;
 
@@ -74,7 +105,11 @@ function startAnimation() {
 }
 
 window.addEventListener("resize", startAnimation);
-
+/*
+A timeout is set with the setTimeout method in the startAnimation function, 
+which calls the updateDots function after 500 milliseconds. 
+The resize event is also listened for with window.addEventListener, and when it occurs, the startAnimation function is called to adjust the canvas size.
+*/
 
 function updateDots() {
   ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
@@ -116,4 +151,17 @@ function updateDots() {
   requestAnimationFrame(updateDots);
 }
 
+/*
+The updateDots function is used to update the dots and draw them on the canvas. 
+It first fills the canvas with a translucent black color, then draws text in the center of the canvas.
+
+A for loop is used to iterate over the dots, and for each iteration, the dot is moved towards its assigned heart shape point. 
+The dot's position and velocity are updated, and the dot is drawn on the canvas using the path function.
+
+Finally, a for loop is used to copy the dot properties of each dot to the next dot in the array, creating a trail effect.
+*/
+
 startAnimation();
+/*
+This startAnimation just starts the animated and if any changes, it restart the Animated.
+*/
