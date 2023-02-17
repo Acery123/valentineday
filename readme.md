@@ -1,6 +1,6 @@
 # Animated Valentine's Heart 
 
-This project was made for my girlfriend on valentine day
+I made this project for my girlfriend because Valentine's Day was approaching.
 
 ## Link to see it in Action
 [Netlify Valentine Heart](https://valentinegiftheart.netlify.app)
