@@ -119,11 +119,6 @@ function updateDots() {
   ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
-  ctx.font = "23px Arial";
-  ctx.fillStyle = "red";
-  ctx.textAlign = "center";
-  ctx.fillText("Feionna <3", WIDTH / 2, HEIGHT / 2);
-
   for (let i = 0; i < dotCount; i++) {
     const dot = dots[i][0];
     const heart = hearts[dot.q];
